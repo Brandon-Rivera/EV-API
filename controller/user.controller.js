@@ -16,7 +16,7 @@ module.exports.getUsers = (req,res) =>
 
 module.exports.getUser = (req,res) => 
 {
-    const sql = `SELECT * FROM user WHERE idUsuario = ?`;
+    const sql = `SELECT * FROM user WHERE id = ?`;
     conexion.query(sql, [req.params.id] ,(error, results, fields) => {
         if(error){
             res.send(error);
