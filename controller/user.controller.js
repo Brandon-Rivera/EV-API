@@ -25,6 +25,17 @@ module.exports.getUser = (req,res) =>
     });
 };
 
+module.exports.getUserByFolio = (req,res) => 
+{
+    const sql = `SELECT * FROM user WHERE folio = ?`;
+    conexion.query(sql, [req.params.folio] ,(error, results, fields) => {
+        if(error){
+            res.send(error);
+        }
+        res.json(results);
+    });
+};
+
 module.exports.insertUser = (req, res) => 
 {
     const body = req.body; 

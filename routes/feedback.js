@@ -6,6 +6,7 @@ const feedbackController = require('../controller/feedback.controller');
 
 router.get('/feedback', feedbackController.getFeedbacks);
 router.get('/feedback/:id', feedbackController.getFeedback);
+router.get('/feedbackByFeedLevel/:feedLevel', feedbackController.getFeedbackByFeedLevel);
 router.post('/feedback', feedbackController.insertFeedback);
 router.put('/feedback', feedbackController.updateFeedback);
 router.delete('/feedback/:id', feedbackController.deleteFeedback);

@@ -16,8 +16,20 @@ module.exports.getUserFeedbacks = (req,res) =>
 
 module.exports.getUserFeedback= (req,res) => 
 {
-    const sql = `SELECT * FROM userFeedback WHERE id = ?`;
-    conexion.query(sql, [req.params.id] ,(error, results, fields) => {
+    const sql = `SELECT * FROM userFeedback WHERE idUser = ?`;
+    conexion.query(sql, [req.params.idUser] ,(error, results, fields) => {
+        if(error){
+            res.send(error);
+        }
+        res.json(results);
+    });
+};
+
+module.exports.getUserFeedbackByTime= (req,res) => 
+{
+    const body = req.body;
+    const sql = `SELECT * FROM userFeedback WHERE idUser = ? AND timeSent = ?`;
+    conexion.query(sql, [body.idUser, body.timeSent] ,(error, results, fields) => {
         if(error){
             res.send(error);
         }

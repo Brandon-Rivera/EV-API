@@ -25,6 +25,17 @@ module.exports.getFood = (req,res) =>
     });
 };
 
+module.exports.getFoodByName = (req,res) => 
+{
+    const sql = `SELECT * FROM food WHERE name = ?`;
+    conexion.query(sql, [req.params.name] ,(error, results, fields) => {
+        if(error){
+            res.send(error);
+        }
+        res.json(results);
+    });
+};
+
 module.exports.insertFood = (req, res) => 
 {
     const body = req.body; 

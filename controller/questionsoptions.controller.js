@@ -25,6 +25,17 @@ module.exports.getQuestionsOptions = (req,res) =>
     });
 };
 
+module.exports.getQuestionsOptionsByQuesId = (req,res) => 
+{
+    const sql = `SELECT * FROM questionOptions WHERE idQuestion = ?`;
+    conexion.query(sql, [req.params.idQuestion] ,(error, results, fields) => {
+        if(error){
+            res.send(error);
+        }
+        res.json(results);
+    });
+};
+
 module.exports.insertQuestionsOptions= (req, res) => 
 {
     const body = req.body; 

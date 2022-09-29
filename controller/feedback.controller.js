@@ -25,6 +25,17 @@ module.exports.getFeedback = (req,res) =>
     });
 };
 
+module.exports.getFeedbackByFeedLevel = (req,res) => 
+{
+    const sql = `SELECT * FROM feedback WHERE feedLevel = ?`;
+    conexion.query(sql, [req.params.feedLevel] ,(error, results, fields) => {
+        if(error){
+            res.send(error);
+        }
+        res.json(results);
+    });
+};
+
 module.exports.insertFeedback = (req, res) => 
 {
     const body = req.body; 

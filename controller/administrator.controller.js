@@ -25,6 +25,17 @@ module.exports.getAdministrator = (req,res) =>
     });
 };
 
+module.exports.getAdministratorByAdminName = (req,res) => 
+{
+    const sql = `SELECT * FROM administrator WHERE adminName = ?`;
+    conexion.query(sql, [req.params.adminName] ,(error, results, fields) => {
+        if(error){
+            res.send(error);
+        }
+        res.json(results);
+    });
+};
+
 module.exports.insertAdministrator = (req, res) => 
 {
     const body = req.body; 

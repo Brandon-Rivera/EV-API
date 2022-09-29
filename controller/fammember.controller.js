@@ -25,6 +25,17 @@ module.exports.getFamMember = (req,res) =>
     });
 };
 
+module.exports.getFamMemberByIdUser = (req,res) => 
+{
+    const sql = `SELECT * FROM famMember WHERE idUser = ?`;
+    conexion.query(sql, [req.params.idUser] ,(error, results, fields) => {
+        if(error){
+            res.send(error);
+        }
+        res.json(results);
+    });
+};
+
 module.exports.insertFamMember = (req, res) => 
 {
     const body = req.body; 

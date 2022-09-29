@@ -17,7 +17,7 @@ module.exports.getMemberdiseases = (req,res) =>
 module.exports.getMemberdisease = (req,res) => 
 {
     const sql = `SELECT * FROM memberDisease WHERE idMember = ?`;
-    conexion.query(sql, [req.params.id] ,(error, results, fields) => {
+    conexion.query(sql, [req.params.idMember] ,(error, results, fields) => {
         if(error){
             res.send(error);
         }

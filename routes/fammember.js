@@ -6,6 +6,7 @@ const famMemberController = require('../controller/fammember.controller');
 
 router.get('/famMember', famMemberController.getFamMembers);
 router.get('/famMember/:id', famMemberController.getFamMember);
+router.get('/famMemberByIdUser/:idUser', famMemberController.getFamMemberByIdUser);
 router.post('/famMember', famMemberController.insertFamMember);
 router.put('/famMember', famMemberController.updateFamMember);
 router.delete('/famMember/:id', famMemberController.deleteFamMember);

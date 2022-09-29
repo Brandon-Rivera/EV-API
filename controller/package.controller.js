@@ -16,8 +16,20 @@ module.exports.getPackages = (req,res) =>
 
 module.exports.getPackage = (req,res) => 
 {
-    const sql = `SELECT * FROM package WHERE id = ?`;
-    conexion.query(sql, [req.params.id] ,(error, results, fields) => {
+    const sql = `SELECT * FROM package WHERE idUser = ?`;
+    conexion.query(sql, [req.params.idUser] ,(error, results, fields) => {
+        if(error){
+            res.send(error);
+        }
+        res.json(results);
+    });
+};
+
+module.exports.getPackageByDate = (req,res) => 
+{
+    const body = req.body; 
+    const sql = `SELECT * FROM package WHERE idUser = ? AND dateCreated = ?`;
+    conexion.query(sql, [body.idUser, body.dateCreated] ,(error, results, fields) => {
         if(error){
             res.send(error);
         }

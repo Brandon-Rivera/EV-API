@@ -25,6 +25,17 @@ module.exports.getSLocation = (req,res) =>
     });
 };
 
+module.exports.getSLocationByUser = (req,res) => 
+{
+    const sql = `SELECT * FROM sLoocation WHERE idUser = ?`;
+    conexion.query(sql, [req.params.idUser] ,(error, results, fields) => {
+        if(error){
+            res.send(error);
+        }
+        res.json(results);
+    });
+};
+
 module.exports.insertSLocation = (req, res) => 
 {
     const body = req.body; 

@@ -16,8 +16,20 @@ module.exports.getQuestionsAnswers = (req,res) =>
 
 module.exports.getQuestionAnswer = (req,res) => 
 {
-    const sql = `SELECT * FROM questionAnswer WHERE id = ?`;
-    conexion.query(sql, [req.params.id] ,(error, results, fields) => {
+    const sql = `SELECT * FROM questionAnswer WHERE idUser = ?`;
+    conexion.query(sql, [req.params.idUser] ,(error, results, fields) => {
+        if(error){
+            res.send(error);
+        }
+        res.json(results);
+    });
+};
+
+module.exports.getQuestionAnswerByTime = (req,res) => 
+{
+    body = req.body;
+    const sql = `SELECT * FROM questionAnswer WHERE idUser = ? AND timeAnswered = ?`;
+    conexion.query(sql, [body.idUser, body.timeAnswered] ,(error, results, fields) => {
         if(error){
             res.send(error);
         }

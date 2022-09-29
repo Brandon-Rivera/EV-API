@@ -5,7 +5,8 @@ const questionanswerController = require('../controller/questionanswer.controlle
 //const middleware = '../middleware/jwt-middleware.js';
 
 router.get('/questionanswer', questionanswerController.getQuestionsAnswers);
-router.get('/questionanswer/:id', questionanswerController.getQuestionAnswer);
+router.get('/questionanswer/:idUser', questionanswerController.getQuestionAnswer);
+router.get('/questionanswerByTime/:idUser', questionanswerController.getQuestionAnswerByTime);
 router.post('/questionanswer', questionanswerController.insertQuestionAnswer);
 router.put('/questionanswer', questionanswerController.updateQuestionAnswer );
 router.delete('/questionanswer/:id', questionanswerController.deleteQuestionAnswer);

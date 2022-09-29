@@ -6,6 +6,7 @@ const questionsoptionsController = require('../controller/questionsoptions.contr
 
 router.get('/questionsoptions', questionsoptionsController.getQuestionsOptionss);
 router.get('/questionsoptions/:id', questionsoptionsController.getQuestionsOptions);
+router.get('/questionsoptionsByQuesId/:idQuestions', questionsoptionsController.getQuestionsOptionsByQuesId);
 router.post('/questionsoptions', questionsoptionsController.insertQuestionsOptions);
 router.put('/questionsoptions', questionsoptionsController.updateQuestionsOptions);
 router.delete('/questionsoptions/:id', questionsoptionsController.deleteQuestionsOptions);
