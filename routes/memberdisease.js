@@ -8,6 +8,6 @@ router.get('/memberdisease', memberdiseaseController.getMemberdiseases);
 router.get('/memberdisease/:idMember', memberdiseaseController.getMemberdisease);
 router.post('/memberdisease', memberdiseaseController.insertMemberdisease);
 router.put('/memberdisease', memberdiseaseController.updateMemberdisease);
-router.delete('/memberdisease/:id', memberdiseaseController.deleteMemberdisease);
+router.delete('/memberdisease/:idMember', memberdiseaseController.deleteMemberdisease);
 
 module.exports = router;
