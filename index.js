@@ -17,7 +17,7 @@ const famMember = require('./routes/fammember');
 const questions = require('./routes/questions');
 const questionsanswer = require('./routes/questionanswer');
 const userfeedback = require('./routes/userfeedback');
-const memberDisease = require('./routes/memberDisease');
+const memberDisease = require('./routes/memberdisease');
 const package = require('./routes/package');
 const questionsoptions = require('./routes/questionsoptions');
 
