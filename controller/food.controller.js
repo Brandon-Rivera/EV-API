@@ -27,8 +27,8 @@ module.exports.getFood = (req,res) =>
 
 module.exports.getFoodByName = (req,res) => 
 {
-    const sql = `SELECT * FROM food WHERE name = ?`;
-    conexion.query(sql, [req.params.name] ,(error, results, fields) => {
+    const sql = `SELECT * FROM food WHERE foodName = ?`;
+    conexion.query(sql, [req.params.foodName] ,(error, results, fields) => {
         if(error){
             res.send(error);
         }
@@ -52,7 +52,7 @@ module.exports.updateFood = (req, res) =>
 {
     const body = req.body; 
     const sql = `UPDATE food SET foodName = ?, foodDesc = ?, lipidos = ?, carbohidratos = ?, proteinas = ?, quantity = ?, stock = ?, expiration = ? WHERE id = ?`;
-    conexion.query(sql, [body.foodName, body.foodDesc, body.lipidos, body.carbohidratos, body.proteinas, body.quantity,body.stock,body.expiration, body.id], (error, results, fields) =>{
+    conexion.query(sql, [body.foodName, body.foodDesc, body.lipidos, body.carbohidratos, body.proteinas, body.quantity, body.stock, body.expiration, body.id], (error, results, fields) =>{
         if(error){
             res.send(error);
         }
