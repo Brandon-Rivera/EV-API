@@ -11,7 +11,7 @@ module.exports.insertLogin = (req, res) =>
     const password = req.body.adminPassword;
     
     let start = true;
-    start = dataValidation.stringCheck(user,start);
+    start = dataValidation.stringCheck(name,start);
     start = dataValidation.stringCheck(password,start);
 
     if(start){
@@ -24,17 +24,17 @@ module.exports.insertLogin = (req, res) =>
             let mensaje = "Admin no autenticado";
             let token = "";
             const result = Object.values(JSON.parse(JSON.stringify(results)));
-            let arrtemp = result.map(object => object.idUsuario);
+            let arrtemp = result.map(object => object.id);
             let idAdmin = arrtemp[0];
 
-            if(!isNaN(idUser) && idUser > 0)
+            if(!isNaN(idAdmin) && idAdmin > 0)
             {
                 const payload = {
                     id: idAdmin,
-                    usuario: user
+                    admin: name
                 }
                 token = jwt.sign(payload, config.key, {expiresIn: 7200})
-                mensaje = 'Usuario autenticado'
+                mensaje = 'Admin autenticado'
             }
 
             res.json
@@ -54,46 +54,44 @@ module.exports.insertUsuario = (req, res) =>
     const body = req.body;
     let start = true;
     
-    start = dataValidation.intCheck(body.folio,start);
-    start = dataValidation.stringCheck(body.userName,start);
-    start = dataValidation.stringCheck(body.userPassword,start);
-    start = dataValidation.stringCheck(body.phoneNumber,start);
-    start = dataValidation.stringCheck(body.email,start);
+    start = dataValidation.stringCheck(body.adminName,start);
+    start = dataValidation.stringCheck(body.adminPassword,start);
+    start = dataValidation.stringCheck(body.eMail,start);
     
     if(start){
-        const sql1 = `SELECT idUsuario FROM usuario WHERE userName = ?`;
-        conexion.query(sql1, [body.userName], (error1, results1, fields) =>{
+        const sql1 = `SELECT id FROM administrator WHERE adminName = ?`;
+        conexion.query(sql1, [body.adminName], (error1, results1, fields) =>{
             if(error1){
                 res.json("Error en la conexión");
             }
             let result = Object.values(JSON.parse(JSON.stringify(results1)));
-            let arrtemp = result.map(object => object.idUsuario);
-            let idUser = arrtemp[0];
-            if(!(!isNaN(idUser) && idUser > 0)){
-                const sql2 = `SELECT idUsuario FROM usuario WHERE email = ?`;
-                conexion.query(sql2, [body.email], (error2, results2, fields) =>{
+            let arrtemp = result.map(object => object.id);
+            let idAdmin = arrtemp[0];
+            if(!(!isNaN(idAdmin) && idAdmin > 0)){
+                const sql2 = `SELECT id FROM administrator WHERE eMail = ?`;
+                conexion.query(sql2, [body.eMail], (error2, results2, fields) =>{
                     if(error2){
                         res.json("Error en la conexión");
                     }
                     let result1 = Object.values(JSON.parse(JSON.stringify(results2)));
-                    let arrtemp1 = result1.map(object => object.idUsuario);
-                    let idUser1 = arrtemp1[0];
-                    if(!(!isNaN(idUser1) && idUser1 > 0)){
-                        const sql = `INSERT INTO user(folio,userName,userPassword,phoneNumber,eMail)VALUES(?, ?, ?, ?, ?, ?)`;
-                        conexion.query(sql, [body.folio, body.userName, body.userPassword,body.phoneNumber, body.eMail], (error, results, fields) =>{
+                    let arrtemp1 = result1.map(object => object.id);
+                    let idAdmin1 = arrtemp1[0];
+                    if(!(!isNaN(idAdmin1) && idAdmin1 > 0)){
+                        const sql = `INSERT INTO administrator(adminName,adminPassword,eMail) VALUES(?, SHA2(?,224), ?)`;
+                        conexion.query(sql, [body.adminName, body.adminPassword, body.eMail], (error, results, fields) =>{
                             if(error){
-                                res.json("Error al crear el usuario");
+                                res.json("Error al crear el administrador");
                             }
-                            res.json("Usuario creado");
+                            res.json("Administrador creado");
                         });
                     }
                     else{
-                        res.json("Correo existente")
+                        res.json("Correo ya existente")
                     }
                 });
             }
             else{
-                res.json("Usuario existente")
+                res.json("Administrador ya existente")
             }
         });
     }

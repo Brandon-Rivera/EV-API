@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const config = require('./config/jwt'); //El punto se refiere a la dirección actual
 
 const login = require('./routes/login');
+const adminLogin = require('./routes/adminLogin');
 const user = require('./routes/user');
 const administrator = require('./routes/administrator');
 const food = require('./routes/food');
@@ -30,7 +31,8 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.use('/api', login)
+app.use('/api', login);
+app.use('/api', adminLogin);
 app.use('/api', user);
 app.use('/api', administrator);
 app.use('/api', food);
