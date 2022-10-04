@@ -40,7 +40,7 @@ module.exports.getUserByFolio = (req,res) =>
 module.exports.insertUser = (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO user(folio,userName,userPassword,phoneNumber,eMail)VALUES(?, ?, ?, ?, ?, ?)`;
+    const sql = `INSERT INTO user(folio,userName,userPassword,phoneNumber,eMail)VALUES(?, ?, ?, ?, ?)`;
     conexion.query(sql, [body.folio, body.userName, body.userPassword,body.phoneNumber, body.eMail], (error, results, fields) =>{
         if(error){
             res.send(error);
