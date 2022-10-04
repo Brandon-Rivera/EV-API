@@ -26,6 +26,7 @@ module.exports.insertLogin = (req, res) =>
             const result = Object.values(JSON.parse(JSON.stringify(results)));
             let arrtemp = result.map(object => object.id);
             let idUser = arrtemp[0];
+            console.log(idUser);
 
             if(!isNaN(idUser) && idUser > 0)
             {
