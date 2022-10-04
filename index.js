@@ -1,4 +1,5 @@
 const express = require('express')
+const multer = require('multer');
 const app = express()
 const port = process.env.PORT || 3000;
 
@@ -25,12 +26,13 @@ const questionsoptions = require('./routes/questionsoptions');
 
 app.use(cors());
 app.use(express.json());
-//app.use(multer().array());
+app.use(multer().array());
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+app.set("key", config.key);
 app.use('/api', login);
 app.use('/api', adminLogin);
 app.use('/api', user);
