@@ -24,7 +24,7 @@ module.exports.insertLogin = (req, res) =>
             let mensaje = "Usuario no autenticado";
             let token = "";
             const result = Object.values(JSON.parse(JSON.stringify(results)));
-            let arrtemp = result.map(object => object.idUsuario);
+            let arrtemp = result.map(object => object.id);
             let idUser = arrtemp[0];
 
             if(!isNaN(idUser) && idUser > 0)
@@ -67,7 +67,7 @@ module.exports.insertUsuario = (req, res) =>
                 res.json("Error en la conexión");
             }
             let result = Object.values(JSON.parse(JSON.stringify(results1)));
-            let arrtemp = result.map(object => object.idUsuario);
+            let arrtemp = result.map(object => object.id);
             let idUser = arrtemp[0];
             if(!(!isNaN(idUser) && idUser > 0)){
                 const sql2 = `SELECT id FROM user WHERE email = ?`;
@@ -76,7 +76,7 @@ module.exports.insertUsuario = (req, res) =>
                         res.json("Error en la conexión");
                     }
                     let result1 = Object.values(JSON.parse(JSON.stringify(results2)));
-                    let arrtemp1 = result1.map(object => object.idUsuario);
+                    let arrtemp1 = result1.map(object => object.id);
                     let idUser1 = arrtemp1[0];
                     if(!(!isNaN(idUser1) && idUser1 > 0)){
                         const sql = `INSERT INTO user(folio,userName,userPassword,phoneNumber,eMail)VALUES(?, ?, ?, ?, ?, ?)`;

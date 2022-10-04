@@ -7,30 +7,30 @@ const dataValidation = require('../helpers/dataValidation');
 
 module.exports.insertLogin = (req, res) => 
 {
-    const user = req.body.userName;
-    const password = req.body.userPassword;
+    const name = req.body.adminName;
+    const password = req.body.adminPassword;
     
     let start = true;
     start = dataValidation.stringCheck(user,start);
     start = dataValidation.stringCheck(password,start);
 
     if(start){
-        const sql = `SELECT idUsuario FROM user
-            WHERE userName = ? AND userPassword = SHA2(?,224)`;
-        conexion.query(sql, [user, password], (error, results, fields) =>{
+        const sql = `SELECT id FROM administrator
+            WHERE adminName = ? AND adminPassword = SHA2(?,224)`;
+        conexion.query(sql, [name, password], (error, results, fields) =>{
             if(error){
                 res.send(error);
             }
-            let mensaje = "Usuario no autenticado";
+            let mensaje = "Admin no autenticado";
             let token = "";
             const result = Object.values(JSON.parse(JSON.stringify(results)));
             let arrtemp = result.map(object => object.idUsuario);
-            let idUser = arrtemp[0];
+            let idAdmin = arrtemp[0];
 
             if(!isNaN(idUser) && idUser > 0)
             {
                 const payload = {
-                    id: idUser,
+                    id: idAdmin,
                     usuario: user
                 }
                 token = jwt.sign(payload, config.key, {expiresIn: 7200})
