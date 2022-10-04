@@ -1,3 +1,3 @@
-module.exports.key ={
+module.exports ={
     key: 'Vacaciones22$'
 }
