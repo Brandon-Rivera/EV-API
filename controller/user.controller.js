@@ -1,5 +1,6 @@
 const mysql = require('mysql');
-const mysqlConfig = require('../helpers/mysql-config')
+const mysqlConfig = require('../helpers/mysql-config');
+const dataValidation = require('../helpers/dataValidation');
 const conexion = mysql.createConnection(mysqlConfig);
 
 
@@ -39,8 +40,8 @@ module.exports.getUserByFolio = (req,res) =>
 module.exports.insertUser = (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO user(id,folio,userName,userPassword,phoneNumber,eMail)VALUES(?, ?, ?, ?, ?, ?)`;
-    conexion.query(sql, [body.id, body.folio, body.userName, body.userPassword,body.phoneNumber, body.eMail], (error, results, fields) =>{
+    const sql = `INSERT INTO user(folio,userName,userPassword,phoneNumber,eMail)VALUES(?, ?, ?, ?, ?, ?)`;
+    conexion.query(sql, [body.folio, body.userName, body.userPassword,body.phoneNumber, body.eMail], (error, results, fields) =>{
         if(error){
             res.send(error);
         }

@@ -39,8 +39,8 @@ module.exports.getFamMemberByIdUser = (req,res) =>
 module.exports.insertFamMember = (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO famMember(id,idUser,isLeader, names, lastNameD, lastNameM, sex, birthDate, weightV, height, isPregnant)VALUES(?, ?, ?,?,?,?,?,?,?,?,?)`;
-    conexion.query(sql, [body.id, body.idUser, body.isLeader, body.names, body.lastNameD, body.lastNameM, body.sex, body.birthDate, body.weightV, body.height, body.isPregnant], (error, results, fields) =>{
+    const sql = `INSERT INTO famMember(idUser,isLeader, names, lastNameD, lastNameM, sex, birthDate, weightV, height, isPregnant)VALUES(?, ?, ?,?,?,?,?,?,?,?,?)`;
+    conexion.query(sql, [body.idUser, body.isLeader, body.names, body.lastNameD, body.lastNameM, body.sex, body.birthDate, body.weightV, body.height, body.isPregnant], (error, results, fields) =>{
         if(error){
             res.send(error);
         }

@@ -28,8 +28,8 @@ module.exports.getQuestion = (req,res) =>
 module.exports.insertQuestion = (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO questions(id,questionType,questionDescription,isActive)VALUES(?, ?, ?, ?)`;
-    conexion.query(sql, [body.id, body.questionType, body.questionDescription, body.isActive], (error, results, fields) =>{
+    const sql = `INSERT INTO questions(questionType,questionDescription,isActive)VALUES(?, ?, ?, ?)`;
+    conexion.query(sql, [body.questionType, body.questionDescription, body.isActive], (error, results, fields) =>{
         if(error){
             res.send(error);
         }
