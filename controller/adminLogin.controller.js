@@ -61,7 +61,7 @@ module.exports.insertUsuario = (req, res) =>
     start = dataValidation.stringCheck(body.email,start);
     
     if(start){
-        const sql1 = `SELECT idUsuario FROM user WHERE userName = ?`;
+        const sql1 = `SELECT idUsuario FROM usuario WHERE userName = ?`;
         conexion.query(sql1, [body.userName], (error1, results1, fields) =>{
             if(error1){
                 res.json("Error en la conexión");
@@ -70,7 +70,7 @@ module.exports.insertUsuario = (req, res) =>
             let arrtemp = result.map(object => object.idUsuario);
             let idUser = arrtemp[0];
             if(!(!isNaN(idUser) && idUser > 0)){
-                const sql2 = `SELECT idUsuario FROM user WHERE email = ?`;
+                const sql2 = `SELECT idUsuario FROM usuario WHERE email = ?`;
                 conexion.query(sql2, [body.email], (error2, results2, fields) =>{
                     if(error2){
                         res.json("Error en la conexión");
