@@ -79,7 +79,7 @@ module.exports.insertUsuario = (req, res) =>
                     let arrtemp1 = result1.map(object => object.id);
                     let idUser1 = arrtemp1[0];
                     if(!(!isNaN(idUser1) && idUser1 > 0)){
-                        const sql = `INSERT INTO user(folio,userName,userPassword,phoneNumber,eMail)VALUES(?, ?, ?, ?, ?, ?)`;
+                        const sql = `INSERT INTO user(folio,userName,userPassword,phoneNumber,eMail)VALUES(?, ?, SHA2(?,224), ?, ?)`;
                         conexion.query(sql, [body.folio, body.userName, body.userPassword,body.phoneNumber, body.eMail], (error, results, fields) =>{
                             if(error){
                                 res.json("Error al crear el usuario");
