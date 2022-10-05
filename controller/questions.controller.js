@@ -8,7 +8,7 @@ module.exports.getQuestions = (req,res) =>
     const sql = `SELECT * FROM questions`;
         conexion.query(sql, (error, results, fields) => {
         if(error){
-            res.send(error);
+            res.json({ mensaje: "Valores inválidos" });
         }
         res.json(results);
     });
@@ -19,7 +19,7 @@ module.exports.getQuestion = (req,res) =>
     const sql = `SELECT * FROM questions WHERE id = ?`;
     conexion.query(sql, [req.params.id] ,(error, results, fields) => {
         if(error){
-            res.send(error);
+            res.json({ mensaje: "Valores inválidos" });
         }
         res.json(results);
     });
@@ -31,7 +31,7 @@ module.exports.insertQuestion = (req, res) =>
     const sql = `INSERT INTO questions(questionType,questionDescription,isActive)VALUES(?, ?, ?)`;
     conexion.query(sql, [body.questionType, body.questionDescription, body.isActive], (error, results, fields) =>{
         if(error){
-            res.send(error);
+            res.json({ mensaje: "Valores inválidos" });
         }
         res.json(results);
     })
@@ -43,7 +43,7 @@ module.exports.updateQuestion = (req, res) =>
     const sql = `UPDATE questions SET questionType = ?,questionDescription = ?,isActive = ? WHERE id = ?`;
     conexion.query(sql, [body.questionType, body.questionDescription, body.isActive, body.id], (error, results, fields) =>{
         if(error){
-            res.send(error);
+            res.json({ mensaje: "Valores inválidos" });
         }
         res.json(results);
     })
@@ -54,7 +54,7 @@ module.exports.deleteQuestion = (req, res) =>
     const sql = `DELETE FROM questions WHERE id = ?`;    
         conexion.query(sql, [req.params.id] ,(error, results, fields) => {
         if(error){
-            res.send(error);
+            res.json({ mensaje: "Valores inválidos" });
         }
         res.json(results);
     });
