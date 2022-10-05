@@ -65,7 +65,7 @@ module.exports.insertUsuario = (req, res) =>
         const sql1 = `SELECT id FROM user WHERE userName = ?`;
         conexion.query(sql1, [body.userName], (error1, results1, fields) =>{
             if(error1){
-                res.json("Error en la conexión");
+                res.json({mensaje:"Error en la conexión"});
             }
             console.log(JSON.stringify(results1))
             let result = Object.values(JSON.parse(JSON.stringify(results1)));
@@ -75,7 +75,7 @@ module.exports.insertUsuario = (req, res) =>
                 const sql2 = `SELECT id FROM user WHERE eMail = ?`;
                 conexion.query(sql2, [body.eMail], (error2, results2, fields) =>{
                     if(error2){
-                        res.json("Error en la conexión");
+                        res.json({mensaje:"Error en la conexión"});
                     }
                     let result1 = Object.values(JSON.parse(JSON.stringify(results2)));
                     let arrtemp1 = result1.map(object => object.id);
