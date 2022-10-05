@@ -52,7 +52,7 @@ module.exports.updateMemberdisease = (req, res) =>
 module.exports.deleteMemberdisease = (req, res) => 
 {
     const sql = `DELETE FROM memberDisease WHERE idMember = ?`;    
-        conexion.query(sql, [req.params.id] ,(error, results, fields) => {
+        conexion.query(sql, [req.params.idMember] ,(error, results, fields) => {
         if(error){
             res.send(error);
         }

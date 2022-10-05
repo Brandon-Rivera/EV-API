@@ -39,7 +39,7 @@ module.exports.getFeedbackByFeedLevel = (req,res) =>
 module.exports.insertFeedback = (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO feedback(feedName,feedLevel, feedDescription)VALUES(?, ?, ?,?)`;
+    const sql = `INSERT INTO feedback(feedName,feedLevel, feedDescription)VALUES(?, ?, ?)`;
     conexion.query(sql, [body.feedName, body.feedLevel, body.feedDescription], (error, results, fields) =>{
         if(error){
             res.send(error);

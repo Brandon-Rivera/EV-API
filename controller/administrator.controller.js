@@ -39,7 +39,7 @@ module.exports.getAdministratorByAdminName = (req,res) =>
 module.exports.insertAdministrator = (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO administrator(adminName,adminPassword,eMail)VALUES(?, ?, ?, ?)`;
+    const sql = `INSERT INTO administrator(adminName,adminPassword,eMail)VALUES(?, ?, ?)`;
     conexion.query(sql, [body.adminName, body.adminPassword, body.eMail], (error, results, fields) =>{
         if(error){
             res.send(error);

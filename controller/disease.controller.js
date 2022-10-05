@@ -28,7 +28,7 @@ module.exports.getDisease = (req,res) =>
 module.exports.insertDisease = (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO disease(diseaseName,disDescription)VALUES(?, ?, ?)`;
+    const sql = `INSERT INTO disease(diseaseName,disDescription)VALUES(?, ?)`;
     conexion.query(sql, [body.diseaseName, body.disDescription], (error, results, fields) =>{
         if(error){
             res.send(error);
@@ -40,7 +40,7 @@ module.exports.insertDisease = (req, res) =>
 module.exports.updateDisease = (req, res) => 
 {
     const body = req.body; 
-    const sql = `UPDATE disease SET id = ?, diseaseName = ?, disDescription = ? WHERE id = ?`;
+    const sql = `UPDATE disease SET diseaseName = ?, disDescription = ? WHERE id = ?`;
     conexion.query(sql, [body.diseaseName, body.disDescription, body.id], (error, results, fields) =>{
         if(error){
             res.send(error);

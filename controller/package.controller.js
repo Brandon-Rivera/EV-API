@@ -53,7 +53,7 @@ module.exports.updatePackage = (req, res) =>
 {
     const body = req.body; 
     const sql = `UPDATE package SET idUser = ?, idFood = ?, dateCreated = ? WHERE id = ?`;
-    conexion.query(sql, [body.idDisease,body.idMember], (error, results, fields) =>{
+    conexion.query(sql, [body.idUser,body.idFood, body.dateCreated, body.id], (error, results, fields) =>{
         if(error){
             res.send(error);
         }
