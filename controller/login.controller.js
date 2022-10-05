@@ -19,7 +19,7 @@ module.exports.insertLogin = (req, res) =>
             WHERE userName = ? AND userPassword = SHA2(?,224)`;
         conexion.query(sql, [user, password], (error, results, fields) =>{
             if(error){
-                res.send(error);
+                res.send({mensaje: error});
             }
             let mensaje = "Usuario no autenticado";
             let token = "";
@@ -46,7 +46,7 @@ module.exports.insertLogin = (req, res) =>
         });
     }
     else{
-        res.send("Valores inválidos")
+        res.json({ mensaje: "Valores inválidos" })
     }
 };
 
@@ -67,6 +67,7 @@ module.exports.insertUsuario = (req, res) =>
             if(error1){
                 res.json("Error en la conexión");
             }
+            console.log(JSON.stringify(results1))
             let result = Object.values(JSON.parse(JSON.stringify(results1)));
             let arrtemp = result.map(object => object.id);
             let idUser = arrtemp[0];
@@ -83,22 +84,22 @@ module.exports.insertUsuario = (req, res) =>
                         const sql = `INSERT INTO user(folio,userName,userPassword,phoneNumber,eMail)VALUES(?, ?, SHA2(?,224), ?, ?)`;
                         conexion.query(sql, [body.folio, body.userName, body.userPassword,body.phoneNumber, body.eMail], (error, results, fields) =>{
                             if(error){
-                                res.json("Error al crear el usuario");
+                                res.json({mensaje:"Error al crear el usuario"})
                             }
-                            res.json("Usuario creado");
+                            res.json({mensaje:"Usuario creado"})
                         });
                     }
                     else{
-                        res.json("Correo existente")
+                        res.json({mensaje:"Correo existente"})
                     }
                 });
             }
             else{
-                res.json("Usuario existente")
+                res.json({mensaje:"Usuario existente"})
             }
         });
     }
     else{
-        res.json("Valores inválidos")
+        res.json({mensaje:"Valores inválidos"})
     }
 };
