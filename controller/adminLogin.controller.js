@@ -34,7 +34,7 @@ module.exports.insertLogin = (req, res) =>
                     id: idAdmin,
                     admin: admin
                 }
-                token = jwt.sign(payload, config.key, {expiresIn: 7200})
+                token = jwt.sign(payload, config.key, {expiresIn: 500})
                 mensaje = 'Admin autenticado'
             }
 

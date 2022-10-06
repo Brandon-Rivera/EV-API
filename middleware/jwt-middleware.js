@@ -6,7 +6,7 @@ const {key} = require('../config/jwt');
 middleware.use((req, res, next) => {
     const token = req.headers['x-access-token']
     if (token) {
-        const decode = jwt.verify(token, key.key, (error, decoded) => {
+        const decode = jwt.verify(token, key, (error, decoded) => {
             if(error)
                 return res.status(403).json({mensaje: 'Token inválido'})
             else
