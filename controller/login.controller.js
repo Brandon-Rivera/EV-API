@@ -26,7 +26,7 @@ module.exports.insertLogin = (req, res) =>
             const result = Object.values(JSON.parse(JSON.stringify(results)));
             let arrtemp = result.map(object => object.id);
             let idUser = arrtemp[0];
-            console.log(idUser);
+            //console.log(idUser);
 
             if(!isNaN(idUser) && idUser > 0)
             {
@@ -67,7 +67,7 @@ module.exports.insertUsuario = (req, res) =>
             if(error1){
                 res.json({mensaje:"Error en la conexión"});
             }
-            console.log(JSON.stringify(results1))
+            //console.log(JSON.stringify(results1))
             let result = Object.values(JSON.parse(JSON.stringify(results1)));
             let arrtemp = result.map(object => object.id);
             let idUser = arrtemp[0];
