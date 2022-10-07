@@ -6,7 +6,6 @@ const middleware = require('../middleware/jwt-middleware.js');
 
 router.get('/package', middleware, packageController.getPackages);
 router.get('/package/:idUser', middleware, packageController.getPackage);
-router.get('/packageByDate', middleware, packageController.getPackageByDate);
 router.post('/package', middleware, packageController.insertPackage);
 router.put('/package', middleware, packageController.updatePackage);
 router.delete('/package/:id', middleware, packageController.deletePackage);
