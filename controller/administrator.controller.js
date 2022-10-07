@@ -10,7 +10,7 @@ module.exports.getAdministrators = (req,res) =>
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
-        res.json(results);
+        res.json({mensaje: results});
     });
 };
 
@@ -21,7 +21,7 @@ module.exports.getAdministrator = (req,res) =>
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
-        res.json(results);
+        res.json({results});
     });
 };
 
@@ -32,7 +32,7 @@ module.exports.getAdministratorByAdminName = (req,res) =>
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
-        res.json(results);
+        res.json({results});
     });
 };
 
@@ -44,7 +44,7 @@ module.exports.insertAdministrator = (req, res) =>
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
-        res.json(results);
+        res.json({results});
     })
 };
 
@@ -56,7 +56,7 @@ module.exports.updateAdministrator = (req, res) =>
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
-        res.json(results);
+        res.json({results});
     })
 };
 
@@ -67,6 +67,6 @@ module.exports.deleteAdministrator = (req, res) =>
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
-        res.json(results);
+        res.json({results});
     });
 };

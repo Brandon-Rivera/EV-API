@@ -44,7 +44,7 @@ module.exports.insertFamMember = (req, res) =>
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
-        res.json(results);
+        res.json({mensaje: results});
     })
 };
 
