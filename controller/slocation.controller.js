@@ -16,7 +16,7 @@ module.exports.getSLocations = (req,res) =>
 
 module.exports.getSLocation = (req,res) => 
 {
-    const sql = `SELECT * FROM sLoocation WHERE id = ?`;
+    const sql = `SELECT * FROM sLocation WHERE id = ?`;
     conexion.query(sql, [req.params.id] ,(error, results, fields) => {
         if(error){
             res.json({ mensaje: "Valores inválidos" });
@@ -27,7 +27,7 @@ module.exports.getSLocation = (req,res) =>
 
 module.exports.getSLocationByUser = (req,res) => 
 {
-    const sql = `SELECT * FROM sLoocation WHERE idUser = ?`;
+    const sql = `SELECT * FROM sLocation WHERE idUser = ?`;
     conexion.query(sql, [req.params.idUser] ,(error, results, fields) => {
         if(error){
             res.json({ mensaje: "Valores inválidos" });
