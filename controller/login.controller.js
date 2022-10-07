@@ -41,7 +41,8 @@ module.exports.insertLogin = (req, res) =>
             res.json
             ({
                 mensaje: mensaje,
-                token: token
+                token: token,
+                id: idUser
             });
         });
     }
