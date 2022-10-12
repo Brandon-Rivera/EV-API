@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const foodController = require('../controller/food.controller');
 
-//const middleware = '../middleware/jwt-middleware.js';
+const middleware = require('../middleware/jwt-middleware.js');
 
-router.get('/food', foodController.getFoods);
-router.get('/food/:id', foodController.getFood);
-router.get('/foodByName/:foodName', foodController.getFoodByName);
-router.post('/food', foodController.insertFood);
-router.put('/food', foodController.updateFood);
-router.delete('/food/:id', foodController.deleteFood);
+router.get('/food', middleware, foodController.getFoods);
+router.get('/food/:id', middleware, foodController.getFood);
+router.get('/foodByName/:foodName', middleware, foodController.getFoodByName);
+router.post('/food', middleware, foodController.insertFood);
+router.put('/food', middleware, foodController.updateFood);
+router.delete('/food/:id', middleware, foodController.deleteFood);
 
 module.exports = router;

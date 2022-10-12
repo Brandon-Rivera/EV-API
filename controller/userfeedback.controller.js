@@ -8,7 +8,7 @@ module.exports.getUserFeedbacks = (req,res) =>
     const sql = `SELECT * FROM userFeedback`;
         conexion.query(sql, (error, results, fields) => {
         if(error){
-            res.send(error);
+            res.json({ mensaje: "Valores inválidos" });
         }
         res.json(results);
     });
@@ -19,7 +19,7 @@ module.exports.getUserFeedback= (req,res) =>
     const sql = `SELECT * FROM userFeedback WHERE idUser = ?`;
     conexion.query(sql, [req.params.idUser] ,(error, results, fields) => {
         if(error){
-            res.send(error);
+            res.json({ mensaje: "Valores inválidos" });
         }
         res.json(results);
     });
@@ -31,7 +31,7 @@ module.exports.getUserFeedbackByTime= (req,res) =>
     const sql = `SELECT * FROM userFeedback WHERE idUser = ? AND timeSent = ?`;
     conexion.query(sql, [body.idUser, body.timeSent] ,(error, results, fields) => {
         if(error){
-            res.send(error);
+            res.json({ mensaje: "Valores inválidos" });
         }
         res.json(results);
     });
@@ -43,7 +43,7 @@ module.exports.insertUserFeedback = (req, res) =>
     const sql = `INSERT INTO userFeedback(id,idUser,idFeedback,timeSent)VALUES(?, ?, ?, ?)`;
     conexion.query(sql, [body.id, body.idUser, body.idFeedback, body.timeSent], (error, results, fields) =>{
         if(error){
-            res.send(error);
+            res.json({ mensaje: "Valores inválidos" });
         }
         res.json(results);
     })
@@ -55,7 +55,7 @@ module.exports.updateUserFeedback = (req, res) =>
     const sql = `UPDATE userFeedback SET idUser = ?,idFeedback = ?,timeSent = ? WHERE id = ?`;
     conexion.query(sql, [body.idUser, body.idFeedback, body.timeSent, body.id], (error, results, fields) =>{
         if(error){
-            res.send(error);
+            res.json({ mensaje: "Valores inválidos" });
         }
         res.json(results);
     })
@@ -66,7 +66,7 @@ module.exports.deleteUserFeedback = (req, res) =>
     const sql = `DELETE FROM userFeedback WHERE id = ?`;    
         conexion.query(sql, [req.params.id] ,(error, results, fields) => {
         if(error){
-            res.send(error);
+            res.json({ mensaje: "Valores inválidos" });
         }
         res.json(results);
     });
