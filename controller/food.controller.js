@@ -39,8 +39,8 @@ module.exports.getFoodByName = (req,res) =>
 module.exports.insertFood = (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO food(foodName,foodDesc,lipidos,carbohidratos,proteinas,quantity,stock,expiration)VALUES(?, ?, ?, ?, ?, ?, ?, ?)`;
-    conexion.query(sql, [body.foodName, body.foodDesc, body.lipidos, body.carbohidratos, body.proteinas, body.quantity,body.stock,body.expiration], (error, results, fields) =>{
+    const sql = `INSERT INTO food(foodName,foodDesc,lipidos,carbohidratos,proteinas,measure,stock,expiration)VALUES(?, ?, ?, ?, ?, ?, ?, ?)`;
+    conexion.query(sql, [body.foodName, body.foodDesc, body.lipidos, body.carbohidratos, body.proteinas, body.measure,body.stock,body.expiration], (error, results, fields) =>{
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
@@ -51,8 +51,8 @@ module.exports.insertFood = (req, res) =>
 module.exports.updateFood = (req, res) => 
 {
     const body = req.body; 
-    const sql = `UPDATE food SET foodName = ?, foodDesc = ?, lipidos = ?, carbohidratos = ?, proteinas = ?, quantity = ?, stock = ?, expiration = ? WHERE id = ?`;
-    conexion.query(sql, [body.foodName, body.foodDesc, body.lipidos, body.carbohidratos, body.proteinas, body.quantity, body.stock, body.expiration, body.id], (error, results, fields) =>{
+    const sql = `UPDATE food SET foodName = ?, foodDesc = ?, lipidos = ?, carbohidratos = ?, proteinas = ?, measure = ?, stock = ?, expiration = ? WHERE id = ?`;
+    conexion.query(sql, [body.foodName, body.foodDesc, body.lipidos, body.carbohidratos, body.proteinas, body.measure, body.stock, body.expiration, body.id], (error, results, fields) =>{
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
