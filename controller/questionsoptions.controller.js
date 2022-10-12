@@ -39,8 +39,8 @@ module.exports.getQuestionsOptionsByQuesId = (req,res) =>
 module.exports.insertQuestionsOptions= (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO questionOptions(id,idQuestions, optionName, optionValue)VALUES(?, ?, ?, ?)`;
-    conexion.query(sql, [body.id, body.idQuestions, body.optionName, body.optionValue], (error, results, fields) =>{
+    const sql = `INSERT INTO questionOptions(idQuestions, optionName, optionValue)VALUES(?, ?, ?, ?)`;
+    conexion.query(sql, [body.idQuestions, body.optionName, body.optionValue], (error, results, fields) =>{
         if(error){
             res.send(error);
         }

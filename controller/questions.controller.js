@@ -28,10 +28,10 @@ module.exports.getQuestion = (req,res) =>
 module.exports.insertQuestion = (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO questions(questionType,questionDescription,isActive)VALUES(?, ?, ?)`;
-    conexion.query(sql, [body.questionType, body.questionDescription, body.isActive], (error, results, fields) =>{
+    const sql = `INSERT INTO questions(questionType,question,questionDescription,isActive)VALUES(?, ?, ?, ?)`;
+    conexion.query(sql, [body.questionType, body.question, body.questionDescription, body.isActive], (error, results, fields) =>{
         if(error){
-            res.send(error);
+            res.send({mensaje: error});
         }
         res.json(results);
     })
@@ -40,8 +40,8 @@ module.exports.insertQuestion = (req, res) =>
 module.exports.updateQuestion = (req, res) => 
 {
     const body = req.body; 
-    const sql = `UPDATE questions SET questionType = ?,questionDescription = ?,isActive = ? WHERE id = ?`;
-    conexion.query(sql, [body.questionType, body.questionDescription, body.isActive, body.id], (error, results, fields) =>{
+    const sql = `UPDATE questions SET questionType = ?, question = ?, questionDescription = ?, isActive = ? WHERE id = ?`;
+    conexion.query(sql, [body.questionType, body.question, body.questionDescription, body.isActive, body.id], (error, results, fields) =>{
         if(error){
             res.send(error);
         }
