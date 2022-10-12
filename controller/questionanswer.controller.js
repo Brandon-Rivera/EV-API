@@ -40,8 +40,8 @@ module.exports.getQuestionAnswerByTime = (req,res) =>
 module.exports.insertQuestionAnswer = (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO questions(idQuestion,idUser,timeAnswered,answer)VALUES(?, ?, ?, ?)`;
-    conexion.query(sql, [body.idQuestion, body.idUser, body.timeAnswered, body.answer], (error, results, fields) =>{
+    const sql = `INSERT INTO questions(id, idQuestion,idUser,timeAnswered,answer)VALUES(? ,?, ?, ?, ?)`;
+    conexion.query(sql, [body.id, body.idQuestion, body.idUser, body.timeAnswered, body.answer], (error, results, fields) =>{
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
