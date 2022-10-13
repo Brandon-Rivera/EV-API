@@ -23,6 +23,7 @@ const userfeedback = require('./routes/userfeedback');
 const memberDisease = require('./routes/memberdisease');
 const package = require('./routes/package');
 const questionsoptions = require('./routes/questionsoptions');
+const whitelist = require('./routes/whitelist');
 
 app.use(cors());
 app.use(express.json());
@@ -48,6 +49,7 @@ app.use('/api', userfeedback);
 app.use('/api', memberDisease);
 app.use('/api', package);
 app.use('/api', questionsoptions);
+app.use('/api', whitelist);
 
 
 app.listen(port, () => {
