@@ -8,6 +8,6 @@ router.get('/whiteList', whiteListController.getwhiteLists);
 router.get('/whiteList/:id', whiteListController.getwhiteList);
 router.post('/whiteList', whiteListController.insertwhiteList);
 router.put('/whiteList', whiteListController.updatewhiteList);
-router.delete('/whiteList/:id', whiteListController.deletewhiteList);
+router.delete('/whiteList/:eMail', whiteListController.deletewhiteList);
 
 module.exports = router;

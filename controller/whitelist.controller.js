@@ -51,7 +51,7 @@ module.exports.updatewhiteList = (req, res) =>
 
 module.exports.deletewhiteList = (req, res) => 
 {
-    const sql = `DELETE FROM whiteList WHERE id = ?`;    
+    const sql = `DELETE FROM whiteList WHERE eMail = ?`;    
         conexion.query(sql, [req.params.id] ,(error, results, fields) => {
         if(error){
             res.json({ mensaje: "Valores inválidos" });
