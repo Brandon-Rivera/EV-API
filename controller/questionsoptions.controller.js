@@ -28,7 +28,7 @@ module.exports.getQuestionsOptions = (req,res) =>
 module.exports.getQuestionsOptionsByQuesId = (req,res) => 
 {
     const sql = `SELECT * FROM questionOptions WHERE idQuestions = ?`;
-    conexion.query(sql, [req.params.idQuestion] ,(error, results, fields) => {
+    conexion.query(sql, [req.params.idQuestions] ,(error, results, fields) => {
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
