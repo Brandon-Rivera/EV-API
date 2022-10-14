@@ -24,9 +24,8 @@ module.exports.getQuestionAnswer = (req, res) => {
 };
 
 module.exports.getQuestionAnswerByTime = (req, res) => {
-    const body = req.body;
-    const sql = `SELECT * FROM questionAnswer WHERE idMember = ? AND timeAnswered = ?`;
-    conexion.query(sql, [body.idMember, body.timeAnswered], (error, results, fields) => {
+    const sql = `SELECT * FROM questionAnswer WHERE idMember = ?`;
+    conexion.query(sql, [req.params.idMember], (error, results, fields) => {
         if (error) {
             res.json({ mensaje: "Valores inválidos" });
         }

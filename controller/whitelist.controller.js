@@ -16,8 +16,8 @@ module.exports.getwhiteLists = (req,res) =>
 
 module.exports.getwhiteList = (req,res) => 
 {
-    const sql = `SELECT * FROM whiteList WHERE id = ?`;
-    conexion.query(sql, [req.params.id] ,(error, results, fields) => {
+    const sql = `SELECT * FROM whiteList WHERE eMail = ?`;
+    conexion.query(sql, [req.params.eMail] ,(error, results, fields) => {
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
