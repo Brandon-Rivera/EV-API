@@ -68,14 +68,23 @@ module.exports.deleteQuestionAnswer = (req, res) => {
 
 module.exports.SubidaQuestionAnswer = (req, res) => {
     const body = req.body;
-    for (let i in body)  {
-        const sql = `INSERT INTO questionAnswer(id, idQuestion,idUser, idMember, timeAnswered,idRow,answer)VALUES(? ,?, ?, ?, ?,?,?)`;
-        conexion.query(sql, [body[i].id, body[i].idQuestion, body[i].idUser, body[i].idMember ,body[i].timeAnswered, body[i].idRow, body[i].answer], (error, results, fields) => {
+    const sql = `INSERT INTO questionAnswer(id, idQuestion, idUser, idMember, timeAnswered, idRow, answer)VALUES(? ,?, ?, ?, ?,?,?)`;
+    const insert = (i) =>
+        new Promise((resolve, reject) => conexion.query(sql, [body[i].id, body[i].idQuestion, body[i].idUser, body[i].idMember, body[i].timeAnswered, body[i].idRow, body[i].answer], (error, results, fields) => {
             if (error) {
-                res.json({ mensaje: "Valores inválidos" });
-                //res.send(error);
+                reject(error);
+            } else {
+                resolve(results);
             }
-            res.json(results);
-        });
+        }));
+    const insertAll = async () => {
+        const results = [];
+        for (const i in body) {
+            const result = await insert(i);
+            results.push(result);
+        }
+        return results;
     }
+
+    insertAll().then(results => res.json(results));
 };
