@@ -10,5 +10,6 @@ router.get('/questionanswerByTime/:idMember', questionanswerController.getQuesti
 router.post('/questionanswer', middleware, questionanswerController.insertQuestionAnswer);
 router.put('/questionanswer', middleware, questionanswerController.updateQuestionAnswer );
 router.delete('/questionanswer/:id', middleware, questionanswerController.deleteQuestionAnswer);
+router.post('/subquestionanswer', questionanswerController.SubidaQuestionAnswer);
 
 module.exports = router;
