@@ -36,8 +36,8 @@ module.exports.getQuestionAnswerByTime = (req, res) => {
 
 module.exports.insertQuestionAnswer = (req, res) => {
     const body = req.body;
-    const sql = `INSERT INTO questions(id, idQuestion,idUser,timeAnswered,answer)VALUES(? ,?, ?, ?, ?)`;
-    conexion.query(sql, [body.id, body.idQuestion, body.idUser, body.timeAnswered, body.answer], (error, results, fields) => {
+    const sql = `INSERT INTO questionAnswer(id, idQuestion, idUser, idMember, timeAnswered, idRow, answer)VALUES(? ,?, ?, ?, ?,?,?)`;
+    conexion.query(sql, [body.id, body.idQuestion, body.idUser, body.idMember, body.timeAnswered, body.idRow, body.answer], (error, results, fields) => {
         if (error) {
             res.json({ mensaje: "Valores inválidos" });
         }
@@ -47,8 +47,8 @@ module.exports.insertQuestionAnswer = (req, res) => {
 
 module.exports.updateQuestionAnswer = (req, res) => {
     const body = req.body;
-    const sql = `UPDATE questionAnswer SET idQuestion = ?,idUser = ?, timeAnswered = ?, answer = ? WHERE id = ?`;
-    conexion.query(sql, [body.idQuestion, body.idUser, body.timeAnswered, body.answer, body.id], (error, results, fields) => {
+    const sql = `UPDATE questionAnswer SET idQuestion = ?, idUser = ?, idMember = ?, timeAnswered = ?, idRow = ?, answer = ? WHERE id = ?`;
+    conexion.query(sql, [body.idQuestion, body.idUser, body.idMember, body.timeAnswered, body.idRow, body.answer, body.id], (error, results, fields) => {
         if (error) {
             res.json({ mensaje: "Valores inválidos" });
         }
