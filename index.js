@@ -24,6 +24,7 @@ const memberDisease = require('./routes/memberdisease');
 const package = require('./routes/package');
 const questionsoptions = require('./routes/questionsoptions');
 const whitelist = require('./routes/whitelist');
+const validfolio = require('./routes/validfolio');
 
 app.use(cors());
 app.use(express.json());
@@ -50,6 +51,7 @@ app.use('/api', memberDisease);
 app.use('/api', package);
 app.use('/api', questionsoptions);
 app.use('/api', whitelist);
+app.use('/api', validfolio);
 
 
 app.listen(port, () => {
