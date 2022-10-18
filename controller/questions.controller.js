@@ -28,8 +28,8 @@ module.exports.getQuestion = (req,res) =>
 module.exports.insertQuestion = (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO questions(id,questionType,question,questionDescription,isActive, qOptions) VALUES(?, ?, ?, ?, ?, ?)`;
-    conexion.query(sql, [body.questionType, body.question, body.questionDescription, body.isActive], (error, results, fields) =>{
+    const sql = `INSERT INTO questions(questionType,question,questionDescription,isActive, qOptions) VALUES( ?, ?, ?, "T", ?)`;
+    conexion.query(sql, [body.questionType, body.question, body.questionDescription, body.qOptions], (error, results, fields) =>{
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
