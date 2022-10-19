@@ -40,8 +40,8 @@ module.exports.insertQuestion = (req, res) =>
 module.exports.updateQuestion = (req, res) => 
 {
     const body = req.body; 
-    const sql = `UPDATE questions SET questionType = ?, question = ?, questionDescription = ?, isActive = ? WHERE id = ?`;
-    conexion.query(sql, [body.questionType, body.question, body.questionDescription, body.isActive, body.id], (error, results, fields) =>{
+    const sql = `UPDATE questions SET questionType = ?, question = ?, questionDescription = ?, isActive = ? WHERE question = ?`;
+    conexion.query(sql, [body.questionType, body.question, body.questionDescription, body.isActive, body.question], (error, results, fields) =>{
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
