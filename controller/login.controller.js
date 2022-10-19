@@ -13,7 +13,6 @@ module.exports.insertLogin = (req, res) =>
     let start = true;
     start = dataValidation.stringCheck(user,start);
     start = dataValidation.stringCheck(password,start);
-
     if(start){
         const sql = `SELECT id FROM user
             WHERE userName = ? AND userPassword = SHA2(?,224)`;
@@ -21,44 +20,26 @@ module.exports.insertLogin = (req, res) =>
             if(error){
                 res.send({mensaje: error});
             }
-            
             let mensaje = "Usuario no autenticado";
             let token = "";
-            
             const result = Object.values(JSON.parse(JSON.stringify(results)));
             let arrtemp = result.map(object => object.id);
             let idUser = arrtemp[0];
             //console.log(idUser);
-            const sql2 = `select id from validFolio where folio = ?`;
-            conexion.query(sql2, [body.eMail], (error2, results2, fields) =>{
-                if(error2){
-                     res.json({mensaje:"Error en la conexión"});
+            if(!isNaN(idUser) && idUser > 0)
+            {
+                const payload = {
+                    id: idUser,
+                    usuario: user
                 }
-                let result1 = Object.values(JSON.parse(JSON.stringify(results2)));
-                let arrtemp1 = result1.map(object => object.id);
-                let idUser1 = arrtemp1[0];
-                if( idUser1 > 0){
-                    if(!isNaN(idUser) && idUser > 0)
-                    {
-                        const payload = {
-                            id: idUser,
-                            usuario: user
-                        }
-                        token = jwt.sign(payload, config.key, {expiresIn: 7200})
-                        mensaje = 'Usuario autenticado'
-                    }
-
-                    res.json
-                    ({
-                        mensaje: mensaje,
-                        token: token,
-                        id: idUser
-                    });
-                }
-                  
-                else{
-                    res.json({mensaje: "Folio existente"});
-                }
+                token = jwt.sign(payload, config.key, {expiresIn: 7200})
+                mensaje = 'Usuario autenticado'
+            }
+            res.json
+            ({
+                mensaje: mensaje,
+                token: token,
+                id: idUser
             });
         });
     }
