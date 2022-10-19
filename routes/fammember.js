@@ -10,5 +10,6 @@ router.get('/famMemberByIdUser/:idUser', middleware, famMemberController.getFamM
 router.post('/famMember', middleware, famMemberController.insertFamMember);
 router.put('/famMember', middleware, famMemberController.updateFamMember);
 router.delete('/famMember/:id', middleware, famMemberController.deleteFamMember);
+router.put('/famMember', middleware, famMemberController.updateFamMemberIsActive);
 
 module.exports = router;
