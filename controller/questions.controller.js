@@ -37,7 +37,7 @@ module.exports.insertQuestion = (req, res) =>
     })
 };
 
-module.exports.updateQuestion = (req, res) => 
+module.exports.updateQuestionFalse = (req, res) => 
 {
     const body = req.body; 
     const sql = `UPDATE questions SET isActive = "F" WHERE question = ?`;
@@ -48,6 +48,20 @@ module.exports.updateQuestion = (req, res) =>
         res.json(results);
     })
 };
+
+module.exports.updateQuestionTrue = (req, res) => 
+{
+    const body = req.body; 
+    const sql = `UPDATE questions SET isActive = "T" WHERE question = ?`;
+    conexion.query(sql, [body.question], (error, results, fields) =>{
+        if(error){
+            res.json({ mensaje: "Valores inválidos" });
+        }
+        res.json(results);
+    })
+};
+
+
 
 module.exports.deleteQuestion = (req, res) => 
 {
