@@ -8,6 +8,6 @@ router.get('/validfolio', validFolioController.getvalidFolios);
 router.get('/validfolio/:id', validFolioController.getvalidFolio);
 router.post('/validdolio', validFolioController.insertvalidFolio);
 router.put('/validfolio', validFolioController.updatevalidFolio);
-router.delete('/validfolio/:id', validFolioController.deletevalidFolio);
+router.delete('/validfolio/:folio', validFolioController.deletevalidFolio);
 
 module.exports = router;
