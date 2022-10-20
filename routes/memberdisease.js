@@ -9,5 +9,6 @@ router.get('/memberdisease/:idMember', middleware, memberdiseaseController.getMe
 router.post('/memberdisease', middleware, memberdiseaseController.insertMemberdisease);
 router.put('/memberdisease', middleware, memberdiseaseController.updateMemberdisease);
 router.delete('/memberdisease/:idMember', middleware, memberdiseaseController.deleteMemberdisease);
+router.post('/memberdiseasedos', middleware, memberdiseaseController.insertMemberdiseaseDOS);
 
 module.exports = router;

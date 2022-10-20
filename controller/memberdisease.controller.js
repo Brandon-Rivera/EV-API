@@ -59,3 +59,27 @@ module.exports.deleteMemberdisease = (req, res) =>
         res.json(results);
     });
 };
+
+module.exports.insertMemberdiseaseDOS = (req, res) => 
+{
+    const body = req.body;
+    const sql = `INSERT INTO memberDisease(idMember,idDisease)VALUES(?, ?)`;
+    const insert = (i) =>
+        new Promise((resolve, reject) => conexion.query(sql, [body[i].idMember, body[i].idDisease], (error, results, fields) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        }));
+    const insertAll = async () => {
+        const results = [];
+        for (const i in body) {
+            const result = await insert(i);
+            results.push(result);
+        }
+        return results;
+    }
+
+    insertAll().then(results => res.json(results));
+};
