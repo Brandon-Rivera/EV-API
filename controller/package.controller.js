@@ -59,3 +59,15 @@ module.exports.deletePackage = (req, res) =>
         res.json(results);
     });
 };
+
+module.exports.deletePackageDOS = (req, res) => 
+{
+    const body = req.body
+    const sql = `DELETE FROM package WHERE idUser = ? and idFood = ?`;    
+        conexion.query(sql, [body.idUser,body.idFood] ,(error, results, fields) => {
+        if(error){
+            res.json({ mensaje: "Valores inválidos" });
+        }
+        res.json(results);
+    });
+};

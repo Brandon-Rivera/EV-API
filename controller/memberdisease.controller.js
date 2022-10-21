@@ -83,3 +83,27 @@ module.exports.insertMemberdiseaseDOS = (req, res) =>
 
     insertAll().then(results => res.json(results));
 };
+
+module.exports.updateMemberdiseaseDOS = (req, res) => 
+{
+    const body = req.body;
+    const sql = `UPDATE memberDisease SET idDisease = ? WHERE idMember = ?`;
+    const insert = (i) =>
+        new Promise((resolve, reject) => conexion.query(sql, [body[i].idMember, body[i].idDisease], (error, results, fields) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        }));
+    const insertAll = async () => {
+        const results = [];
+        for (const i in body) {
+            const result = await insert(i);
+            results.push(result);
+        }
+        return results;
+    }
+
+    insertAll().then(results => res.json(results));
+};
