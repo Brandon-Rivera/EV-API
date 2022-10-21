@@ -52,6 +52,28 @@ module.exports.updatePackage = (req, res) =>
 module.exports.updatePackageName = (req, res) => 
 {
     const body = req.body; 
+    const sql1 = `SELECT id FROM food WHERE foodName = ?`;
+    conexion.query(sql1, [body.foodName], (error1, results1, fields) =>{
+        if(error1){
+            res.json({mensaje:"Error en la conexión"});
+        }
+        //console.log(JSON.stringify(results1))
+        let result = Object.values(JSON.parse(JSON.stringify(results1)));
+        let arrtemp = result.map(object => object.id);
+        let idFood = arrtemp[0];
+        
+        if(idAdmin > 0){
+            const sql = `UPDATE package SET quantity= ? WHERE idUser = ? AND idFood = ?`;
+            conexion.query(sql, [body.quantity, body.idUser, idFood], (error, results, fields) =>{
+                if(error){
+                    res.json({ mensaje: "Valores inválidos" });
+                }
+                res.json(results);
+        })}
+        else{
+            res.json({mensaje: "No exitse ese nombre de comida"})
+        }
+    })
     const sql = `UPDATE package SET quantity= ? WHERE idUser = ? AND idFood = ?`;
     conexion.query(sql, [body.idUser,body.idFood, body.quantity, body.dateCreated, body.id], (error, results, fields) =>{
         if(error){
