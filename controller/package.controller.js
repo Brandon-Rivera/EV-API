@@ -71,15 +71,8 @@ module.exports.updatePackageName = (req, res) =>
                 res.json(results);
         })}
         else{
-            res.json({mensaje: "No exitse ese nombre de comida"})
+            res.json({mensaje: "No existe ese nombre de comida"})
         }
-    })
-    const sql = `UPDATE package SET quantity= ? WHERE idUser = ? AND idFood = ?`;
-    conexion.query(sql, [body.idUser,body.idFood, body.quantity, body.dateCreated, body.id], (error, results, fields) =>{
-        if(error){
-            res.json({ mensaje: "Valores inválidos" });
-        }
-        res.json(results);
     })
 };
 
