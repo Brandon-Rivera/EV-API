@@ -109,7 +109,7 @@ module.exports.updateMemberdiseaseDOS = (req, res) =>
     insertAll().then(results => res.json(results));
 };
 
-module.exports.deleteMemberdisease = (req, res) => 
+module.exports.deleteMemberdiseaseDOS = (req, res) => 
 {
     const body = req.body;
     const sql = `DELETE FROM memberDisease WHERE idMember = ? AND idDisease = ?`;    

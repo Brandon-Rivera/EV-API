@@ -11,5 +11,6 @@ router.put('/memberdisease', middleware, memberdiseaseController.updateMemberdis
 router.delete('/memberdisease', middleware, memberdiseaseController.deleteMemberdisease);
 router.post('/memberdiseasedos', middleware, memberdiseaseController.insertMemberdiseaseDOS);
 router.put('/memberdiseasedos', middleware, memberdiseaseController.updateMemberdiseaseDOS);
+router.delete('/memberdiseasedos', middleware, memberdiseaseController.deleteMemberdiseaseDOS);
 
 module.exports = router;
