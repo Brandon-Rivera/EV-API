@@ -40,7 +40,19 @@ module.exports.insertPackage = (req, res) =>
 module.exports.updatePackage = (req, res) => 
 {
     const body = req.body; 
-    const sql = `UPDATE package SET idUser = ?, idFood = ?, quantity= ?, dateCreated = ? WHERE id = ?`;
+    const sql = `UPDATE package SET idUser = ?, idFood = ?, quantity = ?, dateCreated = ? WHERE id = ?`;
+    conexion.query(sql, [body.idUser,body.idFood, body.quantity, body.dateCreated, body.id], (error, results, fields) =>{
+        if(error){
+            res.json({ mensaje: "Valores inválidos" });
+        }
+        res.json(results);
+    })
+};
+
+module.exports.updatePackageName = (req, res) => 
+{
+    const body = req.body; 
+    const sql = `UPDATE package SET quantity= ? WHERE idUser = ? AND idFood = ?`;
     conexion.query(sql, [body.idUser,body.idFood, body.quantity, body.dateCreated, body.id], (error, results, fields) =>{
         if(error){
             res.json({ mensaje: "Valores inválidos" });
