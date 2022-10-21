@@ -8,7 +8,7 @@ router.get('/memberdisease', middleware, memberdiseaseController.getMemberdiseas
 router.get('/memberdisease/:idMember', middleware, memberdiseaseController.getMemberdisease);
 router.post('/memberdisease', middleware, memberdiseaseController.insertMemberdisease);
 router.put('/memberdisease', middleware, memberdiseaseController.updateMemberdisease);
-router.delete('/memberdisease/:idMember', middleware, memberdiseaseController.deleteMemberdisease);
+router.delete('/memberdisease', middleware, memberdiseaseController.deleteMemberdisease);
 router.post('/memberdiseasedos', middleware, memberdiseaseController.insertMemberdiseaseDOS);
 router.put('/memberdiseasedos', middleware, memberdiseaseController.updateMemberdiseaseDOS);
 

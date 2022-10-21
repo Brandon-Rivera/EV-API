@@ -10,5 +10,6 @@ router.post('/package', middleware, packageController.insertPackage);
 router.put('/package', middleware, packageController.updatePackage);
 router.delete('/package/:id', middleware, packageController.deletePackage);
 router.delete('/packagedos', middleware, packageController.deletePackageDOS);
+router.post('/packageNEW', middleware, packageController.insertPackageNEW);
 
 module.exports = router;

@@ -51,8 +51,9 @@ module.exports.updateMemberdisease = (req, res) =>
 
 module.exports.deleteMemberdisease = (req, res) => 
 {
-    const sql = `DELETE FROM memberDisease WHERE idMember = ?`;    
-        conexion.query(sql, [req.params.idMember] ,(error, results, fields) => {
+    const body = req.body;
+    const sql = `DELETE FROM memberDisease WHERE idMember = ? AND idDisease = ?`;    
+        conexion.query(sql, [body.idMember, body.idDisease] ,(error, results, fields) => {
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
