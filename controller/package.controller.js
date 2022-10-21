@@ -62,7 +62,7 @@ module.exports.updatePackageName = (req, res) =>
         let arrtemp = result.map(object => object.id);
         let idFood = arrtemp[0];
         
-        if(idAdmin > 0){
+        if(idFood > 0){
             const sql = `UPDATE package SET quantity= ? WHERE idUser = ? AND idFood = ?`;
             conexion.query(sql, [body.quantity, body.idUser, idFood], (error, results, fields) =>{
                 if(error){
