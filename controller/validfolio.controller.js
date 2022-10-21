@@ -3,9 +3,9 @@ const mysqlConfig = require('../helpers/mysql-config')
 const conexion = mysql.createConnection(mysqlConfig);
 
 
-module.exports.getDiseases = (req,res) => 
+module.exports.getvalidFolios = (req,res) => 
 {
-    const sql = `SELECT * FROM disease`;
+    const sql = `SELECT * FROM validFolio`;
         conexion.query(sql, (error, results, fields) => {
         if(error){
             res.json({ mensaje: "Valores inválidos" });
@@ -14,9 +14,9 @@ module.exports.getDiseases = (req,res) =>
     });
 };
 
-module.exports.getDisease = (req,res) => 
+module.exports.getvalidFolio = (req,res) => 
 {
-    const sql = `SELECT * FROM disease WHERE id = ?`;
+    const sql = `SELECT * FROM validFolio WHERE id = ?`;
     conexion.query(sql, [req.params.id] ,(error, results, fields) => {
         if(error){
             res.json({ mensaje: "Valores inválidos" });
@@ -25,11 +25,11 @@ module.exports.getDisease = (req,res) =>
     });
 };
 
-module.exports.insertDisease = (req, res) => 
+module.exports.insertvalidFolio = (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO disease(diseaseName,disDescription, isActive)VALUES(?, ?, "T")`;
-    conexion.query(sql, [body.diseaseName, body.disDescription], (error, results, fields) =>{
+    const sql = `INSERT INTO validFolio(folio)VALUES(?)`;
+    conexion.query(sql, [body.folio], (error, results, fields) =>{
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
@@ -37,11 +37,11 @@ module.exports.insertDisease = (req, res) =>
     })
 };
 
-module.exports.updateDisease = (req, res) => 
+module.exports.updatevalidFolio = (req, res) => 
 {
     const body = req.body; 
-    const sql = `UPDATE disease SET diseaseName = ?, disDescription = ?, isActive = ? WHERE id = ?`;
-    conexion.query(sql, [body.diseaseName, body.disDescription, body.isActive, body.id], (error, results, fields) =>{
+    const sql = `UPDATE validFolio SET folio = ? WHERE id = ?`;
+    conexion.query(sql, [body.folio, body.id], (error, results, fields) =>{
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
@@ -49,10 +49,10 @@ module.exports.updateDisease = (req, res) =>
     })
 };
 
-module.exports.deleteDisease = (req, res) => 
+module.exports.deletevalidFolio = (req, res) => 
 {
-    const sql = `DELETE FROM disease WHERE id = ?`;    
-        conexion.query(sql, [req.params.id] ,(error, results, fields) => {
+    const sql = `DELETE FROM validFolio WHERE folio = ?`;    
+        conexion.query(sql, [req.params.folio] ,(error, results, fields) => {
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }

@@ -3,9 +3,9 @@ const mysqlConfig = require('../helpers/mysql-config')
 const conexion = mysql.createConnection(mysqlConfig);
 
 
-module.exports.getDiseases = (req,res) => 
+module.exports.getidealsValues = (req,res) => 
 {
-    const sql = `SELECT * FROM disease`;
+    const sql = `SELECT * FROM idealValues`;
         conexion.query(sql, (error, results, fields) => {
         if(error){
             res.json({ mensaje: "Valores inválidos" });
@@ -14,9 +14,9 @@ module.exports.getDiseases = (req,res) =>
     });
 };
 
-module.exports.getDisease = (req,res) => 
+module.exports.getidealValues = (req,res) => 
 {
-    const sql = `SELECT * FROM disease WHERE id = ?`;
+    const sql = `SELECT * FROM idealValues WHERE id = ?`;
     conexion.query(sql, [req.params.id] ,(error, results, fields) => {
         if(error){
             res.json({ mensaje: "Valores inválidos" });
@@ -25,11 +25,11 @@ module.exports.getDisease = (req,res) =>
     });
 };
 
-module.exports.insertDisease = (req, res) => 
+module.exports.insertIdealValues = (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO disease(diseaseName,disDescription, isActive)VALUES(?, ?, "T")`;
-    conexion.query(sql, [body.diseaseName, body.disDescription], (error, results, fields) =>{
+    const sql = `INSERT INTO idealValues(person,carbohydrates, lipids, proteins, isActive)VALUES(?, ?, ?, ? ,"T")`;
+    conexion.query(sql, [body.person, body.carbohydrates, body.lipids, body.proteins], (error, results, fields) =>{
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
@@ -37,11 +37,11 @@ module.exports.insertDisease = (req, res) =>
     })
 };
 
-module.exports.updateDisease = (req, res) => 
+module.exports.updateIdealValues = (req, res) => 
 {
     const body = req.body; 
-    const sql = `UPDATE disease SET diseaseName = ?, disDescription = ?, isActive = ? WHERE id = ?`;
-    conexion.query(sql, [body.diseaseName, body.disDescription, body.isActive, body.id], (error, results, fields) =>{
+    const sql = `UPDATE idealValues SET person = ?,carbohydrates = ?, lipids = ?, proteins = ?, isActive = ? WHERE id = ?`;
+    conexion.query(sql, [body.person, body.carbohydrates, body.lipids, body.proteins, body.isActive, body.id], (error, results, fields) =>{
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
@@ -49,9 +49,9 @@ module.exports.updateDisease = (req, res) =>
     })
 };
 
-module.exports.deleteDisease = (req, res) => 
+module.exports.deleteIdealValues = (req, res) => 
 {
-    const sql = `DELETE FROM disease WHERE id = ?`;    
+    const sql = `DELETE FROM idealValues WHERE id = ?`;    
         conexion.query(sql, [req.params.id] ,(error, results, fields) => {
         if(error){
             res.json({ mensaje: "Valores inválidos" });

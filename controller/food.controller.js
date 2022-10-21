@@ -27,7 +27,7 @@ module.exports.getFood = (req,res) =>
 
 module.exports.getFoodByName = (req,res) => 
 {
-    const sql = `SELECT * FROM food WHERE foodName = ?`;
+    const sql = `SELECT id FROM food WHERE foodName = ?`;
     conexion.query(sql, [req.params.foodName] ,(error, results, fields) => {
         if(error){
             res.json({ mensaje: "Valores inválidos" });
@@ -39,8 +39,9 @@ module.exports.getFoodByName = (req,res) =>
 module.exports.insertFood = (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO food(foodName,foodDesc,lipidos,carbohidratos,proteinas,measure,stock,expiration)VALUES(?, ?, ?, ?, ?, ?, ?, ?)`;
-    conexion.query(sql, [body.foodName, body.foodDesc, body.lipidos, body.carbohidratos, body.proteinas, body.measure,body.stock,body.expiration], (error, results, fields) =>{
+    console.log(body)
+    const sql = `INSERT INTO food(foodName,foodDesc,lipidos,carbohidratos,proteinas,measure,stock,expiration) VALUES(?, ?, ?, ?, ?, ?, ?, ?)`;
+    conexion.query(sql, [body.foodName, body.foodDesc, body.lipidos, body.carbohidratos, body.proteinas, body.measure, body.stock, body.expiration], (error, results, fields) =>{
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
@@ -51,8 +52,8 @@ module.exports.insertFood = (req, res) =>
 module.exports.updateFood = (req, res) => 
 {
     const body = req.body; 
-    const sql = `UPDATE food SET foodName = ?, foodDesc = ?, lipidos = ?, carbohidratos = ?, proteinas = ?, measure = ?, stock = ?, expiration = ? WHERE id = ?`;
-    conexion.query(sql, [body.foodName, body.foodDesc, body.lipidos, body.carbohidratos, body.proteinas, body.measure, body.stock, body.expiration, body.id], (error, results, fields) =>{
+    const sql = `UPDATE food SET foodDesc = ?, lipidos = ?, carbohidratos = ?, proteinas = ?, measure = ?, stock = ?, expiration = ? WHERE foodName = ?`;
+    conexion.query(sql, [body.foodDesc, body.lipidos, body.carbohidratos, body.proteinas, body.measure, body.stock, body.expiration, body.foodName], (error, results, fields) =>{
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }

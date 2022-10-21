@@ -71,24 +71,39 @@ module.exports.insertAdmin = (req, res) =>
             let idAdmin = arrtemp[0];
             if(!(!isNaN(idAdmin) && idAdmin > 0)){
                 const sql2 = `SELECT id FROM administrator WHERE eMail = ?`;
-                conexion.query(sql2, [body.eMail], (error2, results2, fields) =>{
-                    if(error2){
+                const sql3 = `SELECT id FROM whiteList WHERE eMail = ?`;
+                conexion.query(sql3, [body.eMail], (error3, results3, fields) =>{
+                    if(error3){
                         res.json({mensaje:"Error en la conexión"});
                     }
-                    let result1 = Object.values(JSON.parse(JSON.stringify(results2)));
+                    let result1 = Object.values(JSON.parse(JSON.stringify(results3)));
                     let arrtemp1 = result1.map(object => object.id);
                     let idAdmin1 = arrtemp1[0];
-                    if(!(!isNaN(idAdmin1) && idAdmin1 > 0)){
-                        const sql = `INSERT INTO administrator(adminName,adminPassword,eMail)VALUES(?, SHA2(?,224), ?)`;
-                        conexion.query(sql, [body.adminName, body.adminPassword, body.eMail], (error, results, fields) =>{
-                            if(error){
-                                res.json({mensaje:"Error al crear el administrador"})
+                    console.log(idAdmin1);
+                    if(idAdmin1 > 0){
+                        conexion.query(sql2, [body.eMail], (error2, results2, fields) =>{
+                            if(error2){
+                                res.json({mensaje:"Error en la conexión"});
                             }
-                            res.json({mensaje:"Administrador creado"})
+                            let result1 = Object.values(JSON.parse(JSON.stringify(results2)));
+                            let arrtemp1 = result1.map(object => object.id);
+                            let idAdmin1 = arrtemp1[0];
+                            if(!(!isNaN(idAdmin1) && idAdmin1 > 0)){
+                                const sql = `INSERT INTO administrator(adminName,adminPassword,eMail)VALUES(?, SHA2(?,224), ?)`;
+                                conexion.query(sql, [body.adminName, body.adminPassword, body.eMail], (error, results, fields) =>{
+                                    if(error){
+                                        res.json({mensaje:"Error al crear el administrador"})
+                                    }
+                                    res.json({mensaje:"Administrador creado"})
+                                });
+                            }
+                            else{
+                                res.json({mensaje:"Correo existente"})
+                            }
                         });
                     }
                     else{
-                        res.json({mensaje:"Correo existente"})
+                        res.json({mensaje:"Correo NO existe en WhiteList"})
                     }
                 });
             }

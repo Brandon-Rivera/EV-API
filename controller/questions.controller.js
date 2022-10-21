@@ -28,8 +28,8 @@ module.exports.getQuestion = (req,res) =>
 module.exports.insertQuestion = (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO questions(questionType,question,questionDescription,isActive)VALUES(?, ?, ?, ?)`;
-    conexion.query(sql, [body.questionType, body.question, body.questionDescription, body.isActive], (error, results, fields) =>{
+    const sql = `INSERT INTO questions(questionType,question,questionDescription,isActive, qOptions) VALUES( ?, ?, ?, "F", ?)`;
+    conexion.query(sql, [body.questionType, body.question, body.questionDescription, body.qOptions], (error, results, fields) =>{
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
@@ -37,17 +37,31 @@ module.exports.insertQuestion = (req, res) =>
     })
 };
 
-module.exports.updateQuestion = (req, res) => 
+module.exports.updateQuestionFalse = (req, res) => 
 {
     const body = req.body; 
-    const sql = `UPDATE questions SET questionType = ?, question = ?, questionDescription = ?, isActive = ? WHERE id = ?`;
-    conexion.query(sql, [body.questionType, body.question, body.questionDescription, body.isActive, body.id], (error, results, fields) =>{
+    const sql = `UPDATE questions SET isActive = "F" WHERE question = ?`;
+    conexion.query(sql, [body.question], (error, results, fields) =>{
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
         res.json(results);
     })
 };
+
+module.exports.updateQuestionTrue = (req, res) => 
+{
+    const body = req.body; 
+    const sql = `UPDATE questions SET isActive = "T" WHERE question = ?`;
+    conexion.query(sql, [body.question], (error, results, fields) =>{
+        if(error){
+            res.json({ mensaje: "Valores inválidos" });
+        }
+        res.json(results);
+    })
+};
+
+
 
 module.exports.deleteQuestion = (req, res) => 
 {

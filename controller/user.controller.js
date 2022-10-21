@@ -37,6 +37,17 @@ module.exports.getUserByFolio = (req,res) =>
     });
 };
 
+module.exports.getUserByName = (req,res) => 
+{
+    const sql = `SELECT id FROM user WHERE userName = ?`;
+    conexion.query(sql, [req.params.userName] ,(error, results, fields) => {
+        if(error){
+            res.json({ mensaje: "Valores inválidos" });
+        }
+        res.json(results);
+    });
+};
+
 module.exports.insertUser = (req, res) => 
 {
     const body = req.body; 

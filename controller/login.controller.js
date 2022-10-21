@@ -13,7 +13,6 @@ module.exports.insertLogin = (req, res) =>
     let start = true;
     start = dataValidation.stringCheck(user,start);
     start = dataValidation.stringCheck(password,start);
-
     if(start){
         const sql = `SELECT id FROM user
             WHERE userName = ? AND userPassword = SHA2(?,224)`;
@@ -27,7 +26,6 @@ module.exports.insertLogin = (req, res) =>
             let arrtemp = result.map(object => object.id);
             let idUser = arrtemp[0];
             //console.log(idUser);
-
             if(!isNaN(idUser) && idUser > 0)
             {
                 const payload = {
@@ -37,7 +35,6 @@ module.exports.insertLogin = (req, res) =>
                 token = jwt.sign(payload, config.key, {expiresIn: 7200})
                 mensaje = 'Usuario autenticado'
             }
-
             res.json
             ({
                 mensaje: mensaje,
