@@ -28,8 +28,8 @@ module.exports.getPackage = (req,res) =>
 module.exports.insertPackage = (req, res) => 
 {
     const body = req.body; 
-    const sql = `INSERT INTO package(id, idUser, idFood, quantity, dateCreated)VALUES(?, ?, ?, ?, ?)`;
-    conexion.query(sql, [body.id, body.idUser, body.idFood, body.quantity, body.dateCreated], (error, results, fields) =>{
+    const sql = `INSERT INTO package(idUser, idFood, quantity, dateCreated)VALUES(?, ?, ?, ?)`;
+    conexion.query(sql, [body.idUser, body.idFood, body.quantity, body.dateCreated], (error, results, fields) =>{
         if(error){
             res.json({ mensaje: "Valores inválidos" });
         }
