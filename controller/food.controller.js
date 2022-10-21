@@ -27,7 +27,7 @@ module.exports.getFood = (req,res) =>
 
 module.exports.getFoodByName = (req,res) => 
 {
-    const sql = `SELECT * FROM food WHERE foodName = ?`;
+    const sql = `SELECT id FROM food WHERE foodName = ?`;
     conexion.query(sql, [req.params.foodName] ,(error, results, fields) => {
         if(error){
             res.json({ mensaje: "Valores inválidos" });
